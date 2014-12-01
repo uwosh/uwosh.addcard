@@ -1,0 +1,80 @@
+#UWOshOIEBasicInfo {
+    float:left;
+    width:49%;
+} 
+
+#UWOshOIEApplicationState {
+    float:right;
+    width:49%;
+}
+
+#UWOshOIEFirstClass {
+    float:left;
+    width:49%;
+} 
+
+#UWOshOIESecondClass {
+    float:right;
+    width:49%;
+} 
+
+#UWOshOIECollapsibleSections {
+    width:100%;
+}
+
+#UWOshOIEFunkyButtons ul
+{
+    float:left;
+    padding:0;
+    margin:0;
+    list-style-type:none;
+}
+
+#UWOshOIEFunkyButtons a
+{
+    float:left;
+    width:10em;
+    text-decoration:none;
+    color:white !important;
+    background-color:purple;
+    padding:0.2em 0.6em;
+    border-right:1px solid white;
+    font-size:x-small;
+}
+
+#UWOshOIEFunkyButtons a:hover 
+{
+    background-color:#ff3300;
+}
+
+#UWOshOIEFunkyButtons li 
+{
+    display:inline;
+}
+
+#UWOshOIExpandCollapseAll input
+{
+    font-size:x-small;
+}
+
+
+#UWOshOIEFunkyButtons input
+{
+    width:12em;
+    text-decoration:none;
+    color:white;
+    background:purple;
+    padding:0.2em 0.6em;
+    border-right:1px solid white;
+    font-size:x-small;
+    margin:0.2em 0 0.2em 0;
+}
+
+#UWOshOIEFunkyButtons input:hover 
+{
+    background-color:#ff3300;
+}
+
+#portal-column-content {
+    background-color:white;
+}

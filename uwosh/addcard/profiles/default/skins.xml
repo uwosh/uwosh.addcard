@@ -1,0 +1,6 @@
+<object name="portal_skins" meta_type="Plone Skins Tool" allow_any="False" cookie_persistence="False" request_varname="plone_skin">
+<object name="uwosh.addcard" meta_type="Filesystem Directory View" directory="uwosh.addcard:skins/uwosh.addcard"/>
+<skin-path name="*">
+<layer name="uwosh.addcard" insert-after="custom"/>
+</skin-path>
+</object>

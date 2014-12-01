@@ -1,0 +1,664 @@
+<?xml version="1.0"?>
+<contentrules>
+ <rule name="--workflowmanager--addcard--archive"
+    title="archive transition content rule"
+    description="This content rule was automatically created by the workflow manager to create actions on workflow events. If you want the behavior to work as expected, do not modify this outside the workflow manager."
+    enabled="True" event="Products.CMFCore.interfaces.IActionSucceededEvent"
+    stop-after="False">
+  <conditions>
+   <condition type="plone.conditions.WorkflowTransition">
+    <property name="wf_transitions">
+     <element>archive</element>
+    </property>
+   </condition>
+   <condition type="plone.conditions.PortalType">
+    <property name="check_types">
+     <element>AddCard</element>
+    </property>
+   </condition>
+  </conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property name="message">
+You have archived this add card:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and 
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the add:
+
+{{context.getComments()}}
+                    </property>
+    <property
+       name="recipients">{% for m in context.getRegistrarGroupMemberEmails() %} {{ m }}, {% endfor %}</property>
+    <property
+       name="subject">you have archived this add card for {{ context.getFullname() }} </property>
+   </action>
+  </actions>
+ </rule>
+ <rule
+    name="--workflowmanager--addcard--submitforinstructor1approval"
+    title="submitforinstructor1approval transition content rule"
+    description="This content rule was automatically created by the workflow manager to create actions on workflow events. If you want the behavior to work as expected, do not modify this outside the workflow manager."
+    enabled="True" event="Products.CMFCore.interfaces.IActionSucceededEvent"
+    stop-after="False">
+  <conditions>
+   <condition type="plone.conditions.WorkflowTransition">
+    <property name="wf_transitions">
+     <element>submitforinstructor1approval</element>
+    </property>
+   </condition>
+   <condition type="plone.conditions.PortalType">
+    <property name="check_types">
+     <element>AddCard</element>
+    </property>
+   </condition>
+</conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+Please click on the following link to review this add card.  You may approve or deny the request.  You may also request to add a comment then request a response from the student.
+
+{{ context.absolute_url() }}
+
+The student is {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+The added class is for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is the student's explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property
+       name="recipients">{{ context.getMemberEmail(context.getInstructorID1()) }}</property>
+    <property
+       name="subject">your approval is needed for an add card for ({{ context.getFullname() }})</property>
+   </action>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+Your add request has been sent for review to {{context.getMemberEmail(context.getInstructorID1())}}
+
+You may view your request at any time by clicking on the following link:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property name="recipients">{{ context.getStudentemail() }}</property>
+    <property name="subject">you submitted an add card</property>
+   </action>
+  </actions>
+ </rule>
+ <rule
+    name="--workflowmanager--addcard--submittoregistrarforprocessing"
+    title="submittoregistrarforprocessing transition content rule"
+    description="This content rule was automatically created by the workflow manager to support actions on workflow transitions. If you want the behavior to work as expected, do not modify this outside the workflow manager."
+    enabled="True" event="Products.CMFCore.interfaces.IActionSucceededEvent"
+    stop-after="False">
+  <conditions>
+   <condition type="plone.conditions.WorkflowTransition">
+    <property name="wf_transitions">
+     <element>submittoregistrarforprocessing</element>
+    </property>
+   </condition>
+   <condition type="plone.conditions.PortalType">
+    <property name="check_types">
+     <element>AddCard</element>
+    </property>
+   </condition>
+  </conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+Your add class request has been approved by the instructor {{context.getMemberEmail(context.getInstructorID1())}} and {{context.getMemberEmail(context.getInstructorID2())}}, and is awaiting processing by the Registrar's Office.
+
+You may view your request at any time by clicking on the following link:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property name="recipients">{{ context.getStudentemail() }}</property>
+    <property
+       name="subject">your add card has been approved by the instructor and awaits processing by the Registrar</property>
+   </action>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+You approved this add card, and it is now awaiting processing by the Registrar's Office:
+
+{{ context.absolute_url() }}
+
+The student is {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+The conflict is for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is the student's explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property
+       name="recipients">{{ context.getMemberEmail(context.getInstructorID2()) }}</property>
+    <property
+       name="subject">you approved an add card for ({{ context.getFullname() }})</property>
+   </action>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+Please process this add card request.  It has approved by both the instructor {{context.getMemberEmail(context.getInstructorID1())}}
+
+You may view the request here:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property
+       name="recipients">{% for m in context.getRegistrarGroupMemberEmails() %} {{ m }}, {% endfor %}</property>
+    <property
+       name="subject">please process this time conflict card for {{ context.getFullname() }} </property>
+   </action>
+  </actions>
+ </rule>
+ <rule name="--workflowmanager--addcard--addcomment"
+    title="addcomment transition content rule"
+    description="This content rule was automatically created by the workflow manager to support actions on workflow transitions. If you want the behavior to work as expected, do not modify this outside the workflow manager."
+    enabled="True" event="Products.CMFCore.interfaces.IActionSucceededEvent"
+    stop-after="False">
+  <conditions>
+   <condition type="plone.conditions.WorkflowTransition">
+    <property name="wf_transitions">
+     <element>addcomment</element>
+    </property>
+   </condition>
+   <condition type="plone.conditions.PortalType">
+    <property name="check_types">
+     <element>AddCard</element>
+    </property>
+   </condition>
+  </conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"/>
+    <property
+       name="message">
+A comment has been added to an add card for {{ context.getFullname() }}:
+
+Comment added was:
+
+{{ portal.portal_workflow.getInfoFor(context, 'review_history')[-1]['comments'] }}
+
+
+You may view the request at any time by clicking on the following link:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the conflict:
+
+{{context.getComments()}}
+                    </property>
+    <property
+       name="recipients">{{ context.getMemberEmail(context.getInstructorID1()) }}, {{ context.getMemberEmail(context.getInstructorID2()) }}, {{ context.getStudentemail() }}, {% for m in context.getRegistrarGroupMemberEmails() %} {{ m }}, {% endfor %}</property>
+    <property
+       name="subject">a comment has been added to an add card for {{ context.getFullname() }}</property>
+   </action>
+  </actions>
+ </rule>
+ <rule
+    name="--workflowmanager--addcard--registrarsofficecompletesprocessing"
+    title="registrarsofficecompletesprocessing transition content rule"
+    description="This content rule was automatically created by the workflow manager to support actions on workflow transitions. If you want the behavior to work as expected, do not modify this outside the workflow manager."
+    enabled="True" event="Products.CMFCore.interfaces.IActionSucceededEvent"
+    stop-after="False">
+  <conditions>
+   <condition type="plone.conditions.WorkflowTransition">
+    <property name="wf_transitions">
+     <element>registrarsofficecompletesprocessing</element>
+    </property>
+   </condition>
+   <condition type="plone.conditions.PortalType">
+    <property name="check_types">
+     <element>AddCard</element>
+    </property>
+   </condition>
+  </conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+Your add card has been processed by the Registrar's Office. Please check that you have been enrolled into the correct class.
+
+You may view your request at any time by clicking on the following link:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property name="recipients">{{ context.getStudentemail() }}</property>
+    <property
+       name="subject">your addd card has been processed by the Registrar</property>
+   </action>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+You have completed processing this add request:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the conflict:
+
+{{context.getComments()}}
+                    </property>
+    <property
+       name="recipients">{% for m in context.getRegistrarGroupMemberEmails() %} {{ m }}, {% endfor %}</property>
+    <property
+       name="subject">You have completed processing an add card for {{ context.getFullname() }} </property>
+   </action>
+  </actions>
+ </rule>
+ <rule name="--workflowmanager--addcard--instructor1deniesenrollment"
+    title="instructor1deniesenrollment transition content rule"
+    description="This content rule was automatically created by the workflow manager to support actions on workflow transitions. If you want the behavior to work as expected, do not modify this outside the workflow manager."
+    enabled="True" event="Products.CMFCore.interfaces.IActionSucceededEvent"
+    stop-after="False">
+  <conditions>
+   <condition type="plone.conditions.WorkflowTransition">
+    <property name="wf_transitions">
+     <element>instructor1deniesenrollment</element>
+    </property>
+   </condition>
+   <condition type="plone.conditions.PortalType">
+    <property name="check_types">
+     <element>AddCard</element>
+    </property>
+   </condition>
+  </conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+Your add card request has been denied by {{context.getMemberEmail(context.getInstructorID1())}}.
+
+You may view your request at any time by clicking on the following link:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property name="recipients">{{ context.getStudentemail() }}</property>
+    <property
+       name="subject">your add request has been denied by {{context.getMemberEmail(context.getInstructorID1())}}</property>
+   </action>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property name="message">
+You denied this add card request:
+
+{{ context.absolute_url() }}
+
+The student is {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+The conflict is for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is the student's explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property
+       name="recipients">{{ context.getMemberEmail(context.getInstructorID1()) }}</property>
+    <property
+       name="subject">you denied an add card request for ({{ context.getFullname() }})</property>
+   </action>
+  </actions>
+ </rule>
+ <rule
+    name="--workflowmanager--addcard--instructor1requestsmoreinformation"
+    title="instructor1requestsmoreinformation transition content rule"
+    description="This content rule was automatically created by the workflow manager to support actions on workflow transitions. If you want the behavior to work as expected, do not modify this outside the workflow manager."
+    enabled="True" event="Products.CMFCore.interfaces.IActionSucceededEvent"
+    stop-after="False">
+  <conditions>
+   <condition type="plone.conditions.WorkflowTransition">
+    <property name="wf_transitions">
+     <element>instructor1requestsmoreinformation</element>
+    </property>
+   </condition>
+   <condition type="plone.conditions.PortalType">
+    <property name="check_types">
+     <element>AddCard</element>
+    </property>
+   </condition>
+  </conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+You have requested more information for this add card, and it is now awaiting a response from  {{context.getMemberEmail(context.getStudentemail())}}:
+
+{{ context.absolute_url() }}
+
+The student is {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+The conflict is for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is the student's explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property
+       name="recipients">{{ context.getMemberEmail(context.getInstructorID1()) }}</property>
+    <property
+       name="subject">you requested more information about an add card for ({{ context.getFullname() }})</property>
+   </action>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+More information about your add card has been requested by {{context.getMemberEmail(context.getInstructorID1())}}.
+
+You must respond using the Add Comment action, then you must choose the Respond to Instructor Request button.
+
+
+
+You may view your request at any time by clicking on the following link:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property name="recipients">{{ context.getStudentemail() }}</property>
+    <property
+       name="subject">more information about your add card has been requested by {{context.getMemberEmail(context.getInstructorID1())}}</property>
+   </action>
+  </actions>
+ </rule>
+ <rule
+    name="--workflowmanager--addcard--studentrespondstoinstructor1request"
+    title="studentrespondstoinstructor1request transition content rule"
+    description="This content rule was automatically created by the workflow manager to support actions on workflow transitions. If you want the behavior to work as expected, do not modify this outside the workflow manager."
+    enabled="True" event="Products.CMFCore.interfaces.IActionSucceededEvent"
+    stop-after="False">
+  <conditions>
+   <condition type="plone.conditions.WorkflowTransition">
+    <property name="wf_transitions">
+     <element>studentrespondstoinstructor1request</element>
+    </property>
+   </condition>
+   <condition type="plone.conditions.PortalType">
+    <property name="check_types">
+     <element>AddCard</element>
+    </property>
+   </condition>
+  </conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+You responded to an information request about your add card and it awaits review by {{context.getMemberEmail(context.getInstructorID1())}}
+
+
+You may view your request at any time by clicking on the following link:
+
+{{ context.absolute_url() }}
+
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property name="recipients">{{ context.getStudentemail() }}</property>
+    <property
+       name="subject">you responded to an information request about your add card by {{context.getMemberEmail(context.getInstructorID1())}}</property>
+   </action>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+The student has responded to your request for information for this add card, and it is now awaiting your review:
+
+{{ context.absolute_url() }}
+
+The student is {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+The conflict is for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is the student's explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property
+       name="recipients">{{ context.getMemberEmail(context.getInstructorID1())  }}</property>
+    <property
+       name="subject">{{ context.getFullname() }} has responded to your request for more information about their add card</property>
+   </action>
+  </actions>
+ </rule>
+ <rule name="--workflowmanager--addcard--retract"
+    title="retract transition content rule"
+    description="This content rule was automatically created by the workflow manager to support actions on workflow transitions. If you want the behavior to work as expected, do not modify this outside the workflow manager."
+    enabled="True" event="Products.CMFCore.interfaces.IActionSucceededEvent"
+    stop-after="False">
+  <conditions>
+   <condition type="plone.conditions.WorkflowTransition">
+    <property name="wf_transitions">
+     <element>retract</element>
+    </property>
+   </condition>
+   <condition type="plone.conditions.PortalType">
+    <property name="check_types">
+     <element>AddCard</element>
+    </property>
+   </condition>
+  </conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"></property>
+    <property
+       name="message">
+You have retracted your add card request.
+
+
+You may view your request at any time by clicking on the following link:
+
+{{ context.absolute_url() }}
+
+You may also edit and resubmit your request.
+
+-------------
+
+Request is for {{ context.getFullname() }} ({{context.getStudentemail()}})
+
+for semester code: {{context.getPsterm()}}
+
+and:
+
+{{context.getSubject1()}} {{context.getCatalognumber1()}} {{context.getSectionnumber1()}} (class number is {{context.getClassnumber1()}}, instructor is {{context.getMemberEmail(context.getInstructorID1())}})
+
+Here is your explanation of the add request:
+
+{{context.getComments()}}
+                    </property>
+    <property name="recipients">{{ context.getStudentemail() }}</property>
+    <property
+       name="subject">you have retracted your add card request </property>
+   </action>
+  </actions>
+ </rule>
+ <assignment
+    name="--workflowmanager--addcard--submitforinstructor1approval"
+    bubbles="True" enabled="True" location=""/>
+ <assignment
+    name="--workflowmanager--addcard--submittoregistrarforprocessing"
+    bubbles="True" enabled="True" location=""/>
+ <assignment name="--workflowmanager--addcard--addcomment"
+    bubbles="True" enabled="True" location=""/>
+ <assignment
+    name="--workflowmanager--addcard--registrarsofficecompletesprocessing"
+    bubbles="True" enabled="True" location=""/>
+ <assignment
+    name="--workflowmanager--addcard--instructor1deniesenrollment"
+    bubbles="True" enabled="True" location=""/>
+ <assignment
+    name="--workflowmanager--addcard--instructor1requestsmoreinformation"
+    bubbles="True" enabled="True" location=""/>
+ <assignment
+    name="--workflowmanager--addcard--studentrespondstoinstructor1request"
+    bubbles="True" enabled="True" location=""/>
+ <assignment name="--workflowmanager--addcard--retract"
+    bubbles="True" enabled="True" location=""/>
+</contentrules>
+

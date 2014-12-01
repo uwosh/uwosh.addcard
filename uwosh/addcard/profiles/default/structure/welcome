@@ -1,0 +1,116 @@
+id: welcome
+title: Add Card
+description: 
+subject: 
+relatedItems: 
+location: 
+language: en
+effectiveDate: 2012/02/15 11:45:00 US/Central
+expirationDate: None
+creation_date: 2012/02/15 11:43:3.813993 US/Central
+modification_date: 2012/03/02 09:48:22.629537 US/Central
+creators: kimadmin
+contributors: 
+rights: 
+allowDiscussion: False
+excludeFromNav: False
+presentation: False
+tableContents: False
+Content-Type: text/html
+
+<p>What would you like to do?</p>
+<h2>Students</h2>
+<ul>
+<li><a href="createAddCard">fill out a new add card</a> </li>
+</ul>
+<p> </p>
+<ul>
+<li><a class="internal-link" href="dashboard">view your dashboard</a></li>
+</ul>
+<p> </p>
+<ul>
+<li>view these individual reports:</li>
+</ul>
+<p> </p>
+<ul>
+<ul>
+<li><a class="internal-link" href="reports/for-students/student-my-add-card-needing-a-response">REQUIRING A RESPONSE to an instructor</a> </li>
+</ul>
+<ul>
+<li><a class="internal-link" href="reports/for-students/student-my-cards-waiting-for-approval">awaiting approval by an instructor</a></li>
+</ul>
+<ul>
+<li><a class="internal-link" href="reports/for-students/student-my-add-card-awaiting-registrar-processing">awaiting processing by the Registrar</a></li>
+</ul>
+<ul>
+<li><a class="internal-link" href="reports/for-students/reports/student-my-add-card-completed">approved and processed</a></li>
+</ul>
+</ul>
+<p> </p>
+<ul>
+<ul>
+<li><a class="internal-link" href="reports/for-students/reports/student-my-add-card-denied">requests that have been denied</a></li>
+</ul>
+<ul>
+<li><a class="internal-link" href="reports/for-students/reports/student-my-add-card-archived">cards that have been archived (old requests)</a></li>
+</ul>
+</ul>
+<p> </p>
+<ul>
+</ul>
+<ul>
+<ul>
+<li><a class="internal-link" href="reports/for-students/student-my-add-card">all your add card(s)</a></li>
+</ul>
+</ul>
+<p> </p>
+<h2>Instructors</h2>
+<ul>
+<li><a class="internal-link" href="dashboard">view your dashboard</a></li>
+</ul>
+<p> </p>
+<ul>
+<li>view these individual reports:</li>
+</ul>
+<p> </p>
+<ul>
+<ul>
+<li><a class="internal-link" href="reports/for-instructors/instructors-add-card-awaiting-my-approval-as-instructor1">cards you must review (as instructor 1)</a></li>
+</ul>
+<p> </p>
+<ul>
+<li><a class="internal-link" href="reports/for-instructors/instructors-add-card-i-have-approved-as-instructor1">cards you have approved (as instructor 1)</a></li>
+</ul>
+<p> </p>
+<h2>Registrar's Office</h2>
+<ul>
+<li><a class="internal-link" href="dashboard">view your dashboard</a></li>
+</ul>
+<p> </p>
+<ul>
+<li>view these individual reports:</li>
+</ul>
+<p> </p>
+<ul>
+<ul>
+<li><a class="internal-link" href="reports/for-students/student-my-add-card-awaiting-registrar-processing">cards you must process</a></li>
+</ul>
+<ul>
+<li><a class="internal-link" href="reports/for-registrar/registrar-add-card-to-archive">cards you can archive</a></li>
+</ul>
+</ul>
+<p> </p>
+<ul>
+<ul>
+<li><a class="internal-link" href="reports/for-registrar/registrar-add-card-late-needinstructorapproval">cards that are late (waiting for instructor)</a></li>
+</ul>
+<ul>
+<li><a class="internal-link" href="reports/for-registrar/registrar-add-card-late-instructorwaitingforstudentresponse">cards that are late (waiting for student to respond)</a></li>
+</ul>
+<ul>
+<li><a class="internal-link" href="reports/for-registrar/registrar-add-card-late-registrarprocessing">cards that are late (waiting to be processed)</a></li>
+</ul>
+</ul>
+<p> </p>
+<ul>
+</ul>

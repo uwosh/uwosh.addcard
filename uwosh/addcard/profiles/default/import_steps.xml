@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<import-steps>
+
+ <import-step 
+    id="uwosh.addcard-Install-Vocabularies" 
+    handler="uwosh.addcard.setuphandlers.installVocabularies"
+    title="Install Vocabularies for uwosh.addcard"
+    version="2008-10-21T13:22:32.598710">
+   <dependency step="uwosh.addcard-QI-dependencies"/>
+   Installs the vocabulary files into vocabulary library for uwosh.addcard
+ </import-step>
+
+ <import-step 
+    id="uwosh.addcard-create-registrar-group" 
+    handler="uwosh.addcard.setuphandlers.createRegistrarGroup"
+    title="Create Registrar group for uwosh.addcard"
+    version="2012-02-14">
+   <dependency step="uwosh.addcard-QI-dependencies"/>
+   Creates the Registrar group for uwosh.addcard
+ </import-step>
+
+ <import-step 
+    id="uwosh.addcard-install" 
+    handler="uwosh.addcard.setuphandlers.install"
+    title="install uwosh.addcard"
+    version="2012-03-02">
+   <dependency step="uwosh.addcard-QI-dependencies"/>
+   install uwosh.addcard
+ </import-step>
+
+</import-steps>
